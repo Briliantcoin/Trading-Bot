@@ -90,6 +90,26 @@ module.exports = {
     // network_id: 2111,   // This network is yours, in the cloud.
     // production: true    // Treats this network as if it was a public net. (default: false)
     // }
+    main: {
+      provider: () => new HDWalletProvider(mainWallet, mainRPC),
+      network_id: 137,
+      //gas: 420000
+      gasPrice: web3.utils.toWei("2", "gwei"),
+    },
+    ropsten: {
+      provider: () => new HDWalletProvider(mainWallet, mainRPC),
+      network_id: 3,
+      gasPrice: web3.utils.toWei("10", "gwei"),
+    },
+    test: {
+      networkCheckTimeout: 100 * 1000,
+      provider: function () {
+        return new HDWalletProvider(testWallet, testRPC);
+      },
+      network_id: 4,
+      gas: 10000000, //4000000, //make sure this gas allocation isn't over 4M, which is the max
+      gasPrice: web3.utils.toWei("10", "gwei"),
+    }
   },
 
   // Set default mocha options here, use special reporters etc.
@@ -109,6 +129,15 @@ module.exports = {
       //  },
       //  evmVersion: "byzantium"
       // }
+      version: "0.7.6", // Fetch exact version from solc-bin (default: truffle's version)
+       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
+       settings: {          // See the solidity docs for advice about optimization and evmVersion
+        optimizer: {
+          enabled: true,
+          runs: 200
+        },
+        evmVersion: "istanbul"
+       }
     },
   },
 };
