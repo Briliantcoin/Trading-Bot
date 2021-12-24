@@ -1,4 +1,6 @@
-pragma solidity ^0.5.1;
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.7.0;
 
 interface IUniswapV2Router {
     function swapETHForExactTokens(uint amountOut, address[] calldata path, address to, uint deadline)
