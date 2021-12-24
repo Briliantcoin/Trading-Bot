@@ -7,7 +7,7 @@ const {
 } = require('ethers')
 
 // Replace 'Kovan' by any other network
-const provider = getDefaultProvider('kovan');
+const provider = getDefaultProvider('ropsten');
 
 
 const jsonFile = [
